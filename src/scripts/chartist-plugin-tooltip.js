@@ -42,10 +42,9 @@
 
       var $chart = chart.container;
       if ($chart) {
-        var $toolTip = $chart.querySelector('.chartist-tooltip');
+        var $toolTip = (!options.appendToBody) ? $chart.querySelector('.chartist-tooltip') : document.body.querySelector('.chartist-tooltip');
       }
         
-      var $toolTip = $chart.querySelector('.chartist-tooltip');
       if (!$toolTip) {
         $toolTip = document.createElement('div');
         $toolTip.className = (!options.class) ? 'chartist-tooltip' : 'chartist-tooltip ' + options.class;
