@@ -25,18 +25,18 @@
 
     return function tooltip(chart) {
       var tooltipSelector = options.pointClass;
-      if (chart.constructor.name == Chartist.Bar.prototype.constructor.name) {
-        tooltipSelector = 'ct-bar';
-      } else if (chart.constructor.name ==  Chartist.Pie.prototype.constructor.name) {
+      if (Chartist.Bar.prototype.isPrototypeOf(chart)) {
+        tooltipSelector = chart.options.classNames.bar || 'ct-bar';
+      } else if (Chartist.Pie.prototype.isPrototypeOf(chart)) {
         // Added support for donut graph
         if (chart.options.donut) {
           if (chart.options.donutSolid) {
-            tooltipSelector = 'ct-slice-donut-solid';
+            tooltipSelector = chart.options.classNames.sliceDonutSolid || 'ct-slice-donut-solid';
           } else {
-            tooltipSelector = 'ct-slice-donut';
+            tooltipSelector = chart.options.classNames.sliceDonut || 'ct-slice-donut';
           }
         } else {
-          tooltipSelector = 'ct-slice-pie';
+          tooltipSelector = chart.options.classNames.slicePie || 'ct-slice-pie';
         }
       }
 
